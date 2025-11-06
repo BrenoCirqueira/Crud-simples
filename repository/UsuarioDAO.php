@@ -64,8 +64,25 @@
                 }
                 return $novoUsuario;
             } catch (PDOException $e) {
-                echo("error | erro na camada repository" . $e->getMassege());
+                echo("error | erro na camada repository" . $e->getMessage());
                 return [];
+            }
+        }
+
+        public function deleteUser ($id) {
+            try {
+                $sql = "DELETE FROM usuario WHERE id_usuario = :id";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(':id' , $id , PDO::PARAM_INT);
+                $stmt->execute();
+            } catch (PDOException $e) {
+                $sql = "SELECT nome_usuario FROM usuario WHERE id_usuario = :id";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->bindValue(':id' , $id , PDO::PARAM_INT);
+                $stmt->execute();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                $usuario = $stmt->fetch();
+                echo ("Erro  deletar o usuario " . $usuario['nome_usuario'] . $e->getMessage());
             }
         }
     }

@@ -26,14 +26,23 @@
             }
         }
 
-         public function getAllUsers(string $method) {
-                    if ($method === "GET") {
-                        $response = $this->dao->getAllUser();
-                        if (count($response)) {
-                            return $response;
-                        }
-                    }
-                    return [];
+        public function getAllUsers(string $method) {
+            if ($method === "GET") {
+                $response = $this->dao->getAllUser();
+                if (count($response)) {
+                    return $response;
+                }
             }
+            return [];
+        }
+
+    public function deleteUser(string $method) {
+        if ($method === "POST") {
+            $response = $this->dao->deleteUser($_POST['id_usuario']);
+            
+        } 
+    }
+
+        
     }
 ?>

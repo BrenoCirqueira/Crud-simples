@@ -1,6 +1,6 @@
 <?php
     class Connection {
-        private string $server = "127.0.0.1";
+        private string $server = "localhost";
         private string $user = "root";
         private string $db = "crud";
         private string $password = "";
