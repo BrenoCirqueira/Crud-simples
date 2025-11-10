@@ -24,6 +24,8 @@
             <form action="./view/listaUsuario.php" method="GET">
                 <button id="bt2">Visualizar <br> Usuarios</button>
             </form>
+            
+
         </div>
     </main>
 </body>

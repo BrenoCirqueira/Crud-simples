@@ -47,6 +47,14 @@
                             <button>Excluir</button>
                         </form>" .
                     "</td>" .
+                        "<td> <form action = './atualizarUsuario.php' method='POST'>
+                            <input type='text' name='nome_usuario' id='nome' value='$nome' hidden>
+                            <input type='text' name='email_usuario' id='email' value='$email' hidden>
+                            <input type='date' name='data_nascimento_usuario' id='data_nascimento_usuario' value='$nascimento' hidden>
+                            <input type='number' name='id_usuario' id='id' value='$id' hidden>
+                            <button> Editar </button>
+                            </form>
+                        </td>" .
                 "</tr>" 
             );
         }

@@ -38,11 +38,22 @@
 
     public function deleteUser(string $method) {
         if ($method === "POST") {
-            $response = $this->dao->deleteUser($_POST['id_usuario']);
-            
+            $response = $this->dao->deleteUser($_POST['id_usuario']);   
         } 
     }
 
+    public function updateUser(string $method) {
+        if ($method === "POST") {
+            $id =htmlspecialchars($_POST["id_usuario"]);
+            $nome =htmlspecialchars($_POST["nome_usuario"]);
+            $email =htmlspecialchars($_POST["email_usuario"]);
+            $dataNascimento =htmlspecialchars($_POST["data_nascimento_usuario"]);
+            $usuario = new Usuario($id, $nome, "senha", $email, $dataNascimento);
+            $response = $this->dao->updateUser($usuario);
+            return $response;
+        }
+        return "Problema controllador";
+    }   
         
     }
 ?>

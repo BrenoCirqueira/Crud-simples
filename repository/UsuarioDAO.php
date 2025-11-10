@@ -85,5 +85,30 @@
                 echo ("Erro  deletar o usuario " . $usuario['nome_usuario'] . $e->getMessage());
             }
         }
+
+        public function updateUser(Usuario $usuario) {
+            try{
+                $sql = "UPDATE usuario 
+                    SET                         
+                        nome_usuario = :nome_usuario,
+                        data_nasc_usuario = :data_nasc_usuario,
+                        email_usuario = :email_usuario
+                    WHERE id_usuario = :id_usuario
+                ";
+                $stmt = $this->pdo->prepare($sql);
+                $id = $usuario->getId();
+                $nome = $usuario->getNome();
+                $email = $usuario->getEmail();
+                $dataNasc = $usuario->getDataNascimento();
+                $stmt->bindValue(":nome_usuario",$nome);
+                $stmt->bindValue(":email_usuario",$email);
+                $stmt->bindValue(":data_nasc_usuario",$dataNasc);
+                $stmt->bindValue(":id_usuario",$id);
+                $stmt->execute();
+                return "Usuario atualizado com sucesso";
+            }catch (PDOException $e) {
+                echo("Error: " . $e->getMessage());
+            }
+        }
     }
 ?>
